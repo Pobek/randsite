@@ -1,0 +1,9 @@
+.venv/
+.vscode/
+__pycache__/
+.tmp
+.bin
+.temp
+.old
+.env
+

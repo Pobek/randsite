@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="card__container">
+    {% for record in records.items %}
+    <div class="card">
+      <!-- <img src="https://lh3.googleusercontent.com/ytP9VP86DItizVX2YNA-xTYzV09IS7rh4WexVp7eilIcfHmm74B7odbcwD5DTXmL0PF42i2wnRKSFPBHlmSjCblWHDCD2oD1oaM1CGFcSd48VBKJfsCi4bS170PKxGwji8CPmehwPw=w200-h247-no" alt="Person" class="card__image"> -->
+      <p class="card__name">{{ record.title }}</p>
+      <div class="row">
+  
+        <div class="col">
+          Duration: <br>{{ record.duration }}
+        </div>
+  
+        <div class="col">
+          Date Added: <br>{{ record.date_added }}
+        </div>
+  
+      </div>
+      
+      <button class="card__btn draw-border">More</button>
+  
+    </div>
+    {% endfor %}
+  </div>
+  
+
+  <!-- <div>
+    {% for record in records.items %}
+      <div class="">
+        {{ record.show_id }}
+      </div>
+    {% endfor %}
+  </div> -->
+
+
+  <nav aria-label="records-pagination">
+    <ul class="pagination justify-content-center">
+      {% if records.has_prev %}
+      <li class="page-item">
+        <span>
+          <a class="page-link" href="{{ url_for('records_all', page=records.prev_num) }}">Previous</a>
+        </span>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <span>
+          <a class="page-link">Previous</a>
+        </span>
+      </li>
+      {% endif %}
+      <!-- <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+      {% if records.has_next %}
+      <li class="page-item">
+        <span>
+          <a class="page-link" href="{{ url_for('records_all', page=records.next_num) }}">Next</a>
+        </span>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <span>
+          <a class="page-link">Next</a>
+        </span>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+</div>
+
+{% endblock %}
