@@ -7,35 +7,43 @@
   <div class="card__container">
     {% for record in records.items %}
     <div class="card">
-      <!-- <img src="https://lh3.googleusercontent.com/ytP9VP86DItizVX2YNA-xTYzV09IS7rh4WexVp7eilIcfHmm74B7odbcwD5DTXmL0PF42i2wnRKSFPBHlmSjCblWHDCD2oD1oaM1CGFcSd48VBKJfsCi4bS170PKxGwji8CPmehwPw=w200-h247-no" alt="Person" class="card__image"> -->
+      <img src="https://lh3.googleusercontent.com/ytP9VP86DItizVX2YNA-xTYzV09IS7rh4WexVp7eilIcfHmm74B7odbcwD5DTXmL0PF42i2wnRKSFPBHlmSjCblWHDCD2oD1oaM1CGFcSd48VBKJfsCi4bS170PKxGwji8CPmehwPw=w200-h247-no" alt="Person" class="card__image">
       <p class="card__name">{{ record.title }}</p>
       <div class="row">
-  
-        <div class="col">
-          Duration: <br>{{ record.duration }}
-        </div>
-  
-        <div class="col">
-          Date Added: <br>{{ record.date_added }}
-        </div>
-  
+        Show type: {{ record.type }}
       </div>
-      
-      <button class="card__btn draw-border">More</button>
+      <br>
+      <div class="row">
+        Date Added: {{ record.date_added }}
+      </div>
+      <br>
+      <div class="row">
+        Duration: {{ record.duration }}
+      </div>
+      <br>
+      <div class="row">
+        <div>Available at:</div>
+      </div>
+      <div class="row">
+        <ul>
+        {% for country in record.country %}
+          <li>{{ country }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+      <div class="row" style="width: 300px;">
+        <p>
+          {{ record.description }}
+        </p>
+      </div>
+      <br>
+      <button class="card__btn draw-border" onclick="window.location.href='{{ url_for('record', record=record.show_id) }}';">More</button>
   
     </div>
     {% endfor %}
   </div>
   
-
-  <!-- <div>
-    {% for record in records.items %}
-      <div class="">
-        {{ record.show_id }}
-      </div>
-    {% endfor %}
-  </div> -->
-
+  <br>
 
   <nav aria-label="records-pagination">
     <ul class="pagination justify-content-center">
@@ -60,6 +68,7 @@
         <span>
           <a class="page-link" href="{{ url_for('records_all', page=records.next_num) }}">Next</a>
         </span>
+        
       </li>
       {% else %}
       <li class="page-item disabled">
