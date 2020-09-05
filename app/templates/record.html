@@ -2,15 +2,103 @@
 
 {% block content %}
 
-<div class="container">
-
-  {% if record %}
+{% if record %}
+<div class="jumbotron text-center">
   <h2>{{ record.title }}</h2>
-  {% else %}
-  <div class="jumbotron">
-    No Record Found. 
-  </div>
-  {% endif %}
 </div>
+
+<div class="container">
+  <table class="table">
+    <tbody>
+      <tr>
+        <th>Show ID</th>
+        <td>{{ record.show_id }}</td>
+      </tr>
+      <tr>
+        <th>Show Type</th>
+        <td>{{ record.type }}</td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td>{{ record.description }}</td>
+      </tr>
+      <tr>
+        <th>Director(s)</th>
+        {% if record.director|length > 1%}
+        <td>
+          <ul>
+            {% for director in record.director %}
+            <li>{{ director }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+        {% else %}
+        <td>{{ record.director[0] }}</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th>Cast</th>
+        <td>
+          <ul class="split_columns">
+            {% for actor in record.cast %}
+              <li>
+                {{ actor }}
+              </li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th>Countries</th>
+        {% if record.country|length > 1%}
+        <td>
+          <ul>
+            {% for country in record.country %}
+            <li>{{ country }}</li>
+            {% endfor %}
+          </ul>
+        </td>
+        {% else %}
+        <td>{{ record.country[0] }}</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th>Was Added At</th>
+        <td>{{ record.date_added }}</td>
+      </tr>
+      <tr>
+        <th>Release Year</th>
+        <td>{{ record.release_year }}</td>
+      </tr>
+      <tr>
+        <th>Show Rating</th>
+        <td>{{ record.rating }}</td>
+      </tr>
+      <tr>
+        <th>Duration</th>
+        <td>{{ record.duration }}</td>
+      </tr>
+      <tr>
+        <th>Listed in</th>
+        <td>
+          <ul class="split_columns">
+            {% for tag in record.listed_in %}
+              <li>
+                {{ tag }}
+              </li>
+            {% endfor %}
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% else %}
+<div class="jumbotron text-center">
+  <h2>
+    No Record Found. 
+  </h2>
+</div>
+{% endif %}
 
 {% endblock %}
