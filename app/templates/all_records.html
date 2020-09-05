@@ -45,33 +45,6 @@
           </tr>
         </table>
       </div>
-      <!-- <div class="row">
-        Show type: {{ record.type }}
-      </div>
-      <br>
-      <div class="row">
-        Date Added: {{ record.date_added }}
-      </div>
-      <br>
-      <div class="row">
-        Duration: {{ record.duration }}
-      </div>
-      <br>
-      <div class="row">
-        <div>Available at:</div>
-      </div>
-      <div class="row">
-        <ul>
-        {% for country in record.country %}
-          <li>{{ country }}</li>
-        {% endfor %}
-        </ul>
-      </div>
-      <div class="row" style="width: 300px;">
-        <p>
-          {{ record.description }}
-        </p>
-      </div> -->
       <footer>
         <button class="card__btn draw-border" onclick="window.location.href='{{ url_for('record', record=record.show_id) }}';">More</button>
       </footer>
