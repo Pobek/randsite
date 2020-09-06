@@ -2,6 +2,20 @@
 
 {% block content %}
 
+<div class="container filter_container">
+  <form class="form text-center" method="GET" action="/records" role="form">
+    <div class="form-group center">
+      <label for="show-type">Show Type</label>
+      <select id="show-type" name="show-type" class="form-control form-control-sm">
+        <option value="All" {% if record_filter == "All" %} selected {% endif %}>All</option>
+        <option value="Movie" {% if record_filter == "Movie" %} selected {% endif %}>Movie</option>
+        <option value="TV Show" {% if record_filter == "TV Show" %} selected {% endif %}>TV Show</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary filter_button">Filter</button>
+  </form>
+</div>
+<br>
 <div class="container">
 
   <div class="card__container">
